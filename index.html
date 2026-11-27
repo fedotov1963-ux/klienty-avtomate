@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Клиенты на автомате — настройка воронок и рекламы для малого бизнеса</title>
+<meta name="description" content="Настраиваем воронки, ботов и рекламу, чтобы заявки приходили без ежедневной ручной работы. Понятные цены, договор, измеримый результат.">
+<meta property="og:title" content="Клиенты на автомате — заявки приходят, пока вы занимаетесь делом">
+<meta property="og:description" content="Воронки, боты и реклама для малого бизнеса. Цены открыты, договор, гарантия условиями.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232E6BFF'/%3E%3Cpath d='M18 5 L9 18 h6 l-3 9 L23 13 h-7 l3 -8 z' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #2E6BFF;
+    --blue-dark: #2456CC;
+    --lime: #A8F53A;
+    --ink: #0E1526;
+    --text: #1A1D26;
+    --muted: #5C6478;
+    --cloud: #F5F7FB;
+    --line: #E2E7F0;
+    --white: #FFFFFF;
+    --green: #1FA97A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Golos Text', 'Segoe UI', Arial, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Unbounded', 'Golos Text', sans-serif; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 100px 0; }
+
+  /* ---------- Шапка ---------- */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    transition: background .3s, border-color .3s;
+    border-bottom: 1px solid transparent;
+  }
+  header.scrolled {
+    background: rgba(14, 21, 38, .92);
+    border-bottom-color: rgba(255,255,255,.08);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 76px; max-width: 1240px; margin: 0 auto; padding: 0 32px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo .mark {
+    width: 38px; height: 38px; border-radius: 11px;
+    background: linear-gradient(135deg, #2E6BFF, #6D3DF5);
+    display: grid; place-items: center; flex: none;
+  }
+  .nav-logo .mark svg { width: 19px; height: 19px; }
+  .nav-logo span {
+    font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 14px;
+    color: var(--white); letter-spacing: .02em;
+  }
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--white); color: var(--ink);
+    font-family: 'Golos Text', sans-serif; font-weight: 500; font-size: 15px;
+    padding: 11px 14px 11px 22px; border-radius: 100px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: box-shadow .2s, transform .1s;
+  }
+  .pill:hover { box-shadow: 0 6px 20px rgba(0,0,0,.3); }
+  .pill:active { transform: scale(.98); }
+  .pill .circle {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--blue); display: grid; place-items: center; flex: none;
+  }
+  .pill .circle svg { width: 14px; height: 14px; stroke: #fff; }
+  .burger {
+    display: grid; place-items: center;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,.12); border: none; cursor: pointer;
+  }
+  .burger svg { width: 17px; height: 17px; stroke: #fff; }
+  .mobile-menu {
+    display: none; flex-direction: column; gap: 4px;
+    background: rgba(14,21,38,.97); padding: 12px 32px 24px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: rgba(255,255,255,.85); text-decoration: none; font-size: 16px; padding: 12px 0;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column;
+    color: var(--white);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('assets/hero-bg.jpg') center / cover no-repeat, var(--ink);
+  }
+  .hero-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(14,21,38,.45) 0%, rgba(14,21,38,.15) 45%, rgba(14,21,38,.72) 100%);
+  }
+  .hero-top {
+    position: relative; z-index: 1; flex: 1;
+    display: flex; flex-direction: column; justify-content: center;
+    text-align: center; padding: 150px 24px 48px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 66px); font-weight: 500;
+    letter-spacing: -.015em; line-height: 1.12;
+    max-width: 900px; margin: 0 auto 22px;
+  }
+  .hero .sub {
+    font-size: clamp(16px, 2vw, 19px); color: rgba(255,255,255,.75);
+    max-width: 560px; margin: 0 auto;
+  }
+
+  /* Калькулятор */
+  .calc-wrap { position: relative; z-index: 1; padding: 0 24px 72px; }
+  .calc {
+    max-width: 780px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.15fr 1fr;
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(5,10,25,.5);
+  }
+  .calc-input {
+    background: rgba(255,255,255,.97);
+    padding: 34px 36px;
+  }
+  .calc-input h3 {
+    font-family: 'Golos Text', sans-serif; font-size: 15px; font-weight: 500;
+    color: var(--muted); margin-bottom: 22px;
+  }
+  .stepper-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 0; border-top: 1px solid var(--line);
+  }
+  .stepper-row:first-of-type { border-top: none; }
+  .stepper-row .lbl { font-size: 15px; color: var(--muted); }
+  .stepper { display: flex; align-items: center; gap: 16px; }
+  .stepper button {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1.5px solid var(--line); background: var(--white);
+    font-size: 19px; color: var(--text); cursor: pointer; line-height: 1;
+    transition: border-color .2s, background .2s;
+    display: grid; place-items: center;
+  }
+  .stepper button:hover { border-color: var(--blue); color: var(--blue); }
+  .stepper .val {
+    font-family: 'Unbounded', sans-serif; font-size: 19px; font-weight: 600;
+    min-width: 118px; text-align: center; white-space: nowrap;
+    color: var(--text);
+  }
+  .calc-input .hint { margin-top: 18px; font-size: 12.5px; color: var(--muted); }
+  .calc-out {
+    background: rgba(14,21,38,.55);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-left: 1px solid rgba(255,255,255,.14);
+    padding: 34px 36px; color: var(--white);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .calc-out .lbl { font-size: 13px; color: rgba(255,255,255,.6); margin-bottom: 6px; }
+  .calc-out .big {
+    font-family: 'Unbounded', sans-serif; font-size: 40px; font-weight: 600;
+    line-height: 1.15; margin-bottom: 8px;
+  }
+  .calc-out .big small { font-size: 17px; font-weight: 500; color: rgba(255,255,255,.6); }
+  .calc-out .note { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 14px; }
+  .calc-out .btn-primary { margin-top: 22px; align-self: flex-start; }
+
+  .btn {
+    display: inline-block; border: none; cursor: pointer; text-decoration: none;
+    font-family: 'Golos Text', sans-serif; font-weight: 500; font-size: 16px;
+    padding: 15px 30px; border-radius: 12px;
+    transition: background .2s, box-shadow .2s, transform .1s;
+  }
+  .btn-primary { background: var(--blue); color: var(--white); }
+  .btn-primary:hover { background: var(--blue-dark); box-shadow: 0 8px 24px rgba(46,107,255,.35); }
+  .btn-primary:active { transform: scale(.98); }
+  .btn-ghost-dark {
+    background: transparent; color: var(--white);
+    border: 1.5px solid rgba(255,255,255,.4);
+  }
+  .btn-ghost-dark:hover { background: rgba(255,255,255,.1); }
+
+  /* ---------- Секции ---------- */
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+  .section-label { font-size: 15px; color: var(--blue); font-weight: 500; margin-bottom: 14px; }
+  h2 { font-size: clamp(25px, 3.4vw, 38px); font-weight: 600; line-height: 1.22; }
+  .section-sub { color: var(--muted); margin-top: 16px; }
+
+  /* Этапы */
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .step { border-top: 2px solid var(--ink); padding-top: 22px; }
+  .step .num {
+    font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--blue); display: block; margin-bottom: 14px;
+  }
+  .step h3 { font-size: 19px; font-weight: 600; margin-bottom: 10px; }
+  .step p { color: var(--muted); font-size: 15.5px; }
+
+  /* Услуги */
+  .services { background: var(--cloud); }
+  .svc-list { max-width: 880px; margin: 0 auto; }
+  .svc {
+    display: grid; grid-template-columns: 56px 1fr auto; gap: 28px; align-items: start;
+    padding: 32px 8px; border-top: 1px solid var(--line);
+    transition: background .2s;
+  }
+  .svc:hover { background: rgba(46,107,255,.03); }
+  .svc:last-child { border-bottom: 1px solid var(--line); }
+  .svc .icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--white); border: 1px solid var(--line);
+    display: grid; place-items: center;
+  }
+  .svc .icon svg { width: 24px; height: 24px; stroke: var(--blue); }
+  .svc h3 { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+  .svc p { color: var(--muted); font-size: 15.5px; max-width: 560px; }
+  .svc .tag {
+    font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--blue); white-space: nowrap; padding-top: 6px;
+  }
+
+  /* Кейсы */
+  .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .case { border: 1px solid var(--line); border-radius: 18px; padding: 32px 30px; transition: border-color .2s; }
+  .case:hover { border-color: #C6D2E8; }
+  .case .who { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+  .case .metric { font-family: 'Unbounded', sans-serif; font-size: 30px; font-weight: 600; color: var(--blue); }
+  .case .what { margin-top: 10px; font-size: 15px; }
+  .case .term { margin-top: 18px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+  .cases-note { max-width: 720px; margin: 26px auto 0; text-align: center; font-size: 13.5px; color: var(--muted); }
+
+  /* Автор */
+  .author { background: var(--cloud); }
+  .author-box {
+    max-width: 880px; margin: 0 auto;
+    display: grid; grid-template-columns: 300px 1fr; gap: 52px; align-items: start;
+    background: var(--white); border: 1px solid var(--line); border-radius: 20px;
+    padding: 48px;
+  }
+  .author-photo {
+    aspect-ratio: 1; border-radius: 16px;
+    background: linear-gradient(135deg, #2E6BFF, #6D3DF5);
+    display: grid; place-items: center;
+    font-family: 'Unbounded', sans-serif; font-size: 62px; font-weight: 600; color: var(--white);
+  }
+  .author-box h3 { font-size: 23px; margin-bottom: 12px; }
+  .author-box p { color: var(--muted); margin-bottom: 12px; font-size: 16px; }
+  .requisites { list-style: none; margin-top: 20px; font-size: 14px; color: var(--muted); }
+  .requisites li { padding: 9px 0; border-top: 1px solid var(--line); }
+  .requisites b { color: var(--text); font-weight: 500; }
+
+  /* Цены */
+  .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .price-card {
+    border: 1px solid var(--line); border-radius: 18px; padding: 36px 30px;
+    display: flex; flex-direction: column; transition: border-color .2s;
+  }
+  .price-card:hover { border-color: #C6D2E8; }
+  .price-card.featured { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .price-card h3 { font-size: 18px; margin-bottom: 8px; }
+  .price-card .for { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+  .price-card.featured .for { color: rgba(255,255,255,.55); }
+  .price { font-family: 'Unbounded', sans-serif; font-size: 25px; font-weight: 600; margin-bottom: 24px; }
+  .price small { font-family: 'Golos Text', sans-serif; font-size: 14px; font-weight: 400; color: var(--muted); }
+  .price-card.featured .price small { color: rgba(255,255,255,.55); }
+  .price-card ul { list-style: none; margin-bottom: 30px; flex: 1; }
+  .price-card li { padding: 8px 0 8px 26px; position: relative; font-size: 15px; }
+  .price-card li::before {
+    content: ""; position: absolute; left: 0; top: 15px;
+    width: 13px; height: 7px;
+    border-left: 2px solid var(--green); border-bottom: 2px solid var(--green);
+    transform: rotate(-45deg);
+  }
+  .price-card .btn { text-align: center; }
+  .price-card.featured .btn-primary { background: var(--lime); color: var(--ink); }
+  .price-card.featured .btn-primary:hover { background: #97DE2E; box-shadow: 0 8px 24px rgba(168,245,58,.3); }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin: 0 auto; }
+  details { border-bottom: 1px solid var(--line); padding: 22px 4px; }
+  summary {
+    cursor: pointer; font-weight: 500; font-size: 17px; list-style: none;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: ""; flex: none; width: 11px; height: 11px;
+    border-right: 2px solid var(--blue); border-bottom: 2px solid var(--blue);
+    transform: rotate(45deg); transition: transform .25s;
+  }
+  details[open] summary::after { transform: rotate(-135deg); }
+  details p { color: var(--muted); padding-top: 14px; max-width: 660px; }
+
+  /* Финальный CTA */
+  .final { background: var(--ink); color: var(--white); text-align: center; position: relative; overflow: hidden; }
+  .final::before {
+    content: ""; position: absolute; width: 760px; height: 760px;
+    top: -480px; left: 50%; transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(46,107,255,.4), transparent 62%);
+    filter: blur(70px);
+  }
+  .final .container { position: relative; z-index: 1; }
+  .final h2 { margin: 0 auto 20px; max-width: 620px; }
+  .final p { color: rgba(255,255,255,.65); max-width: 500px; margin: 0 auto 36px; }
+  .final .actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .final .fine { margin-top: 22px; font-size: 14px; color: rgba(255,255,255,.45); }
+
+  /* Подвал */
+  footer { background: #4A4A4A; color: rgba(255,255,255,.6); padding: 46px 0; font-size: 14px; }
+  .footer-grid { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+  footer a { color: rgba(255,255,255,.7); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+
+  @media (max-width: 900px) {
+    section { padding: 68px 0; }
+    .nav { padding: 0 20px; }
+    .nav-right .pill span { display: none; }
+    .nav-right .pill { padding: 8px; }
+    .hero-top { padding-top: 130px; }
+    .calc { grid-template-columns: 1fr; }
+    .calc-out { border-left: none; border-top: 1px solid rgba(255,255,255,.14); }
+    .steps-grid, .cases, .pricing { grid-template-columns: 1fr; }
+    .svc { grid-template-columns: 48px 1fr; }
+    .svc .tag { grid-column: 2; padding-top: 0; }
+    .author-box { grid-template-columns: 1fr; padding: 30px; gap: 28px; }
+    .author-photo { max-width: 220px; }
+    .hero { min-height: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <nav class="nav">
+    <a class="nav-logo" href="#top">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 L5 13 h5 l-2 9 L18 10 h-6 l3 -8 z" fill="#fff"/></svg>
+      </span>
+      <span>Клиенты на автомате</span>
+    </a>
+    <div class="nav-right">
+      <a class="pill" href="#contacts">
+        <span>Обсудить задачу</span>
+        <span class="circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 L17 7 M9 7 h8 v8"/></svg>
+        </span>
+      </a>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#steps">Как работаем</a>
+    <a href="#services">Что настраиваем</a>
+    <a href="#cases">Кейсы</a>
+    <a href="#pricing">Цены</a>
+    <a href="#faq">Вопросы</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="top" style="padding:0;">
+  <div class="hero-bg" role="img" aria-label="Абстрактный тёмный фон со световыми линиями воронки"></div>
+  <div class="hero-top">
+    <h1>Заявки приходят,<br>пока вы занимаетесь делом</h1>
+    <p class="sub">Воронки, боты и реклама для малого бизнеса. С договором, открытыми ценами и отчётом, который понятно читать.</p>
+  </div>
+  <div class="calc-wrap">
+    <div class="calc">
+      <div class="calc-input">
+        <h3>Посчитайте свою экономику</h3>
+        <div class="stepper-row">
+          <span class="lbl">Средний чек</span>
+          <div class="stepper">
+            <button type="button" data-target="check" data-dir="-1" aria-label="Уменьшить чек">−</button>
+            <span class="val" id="checkVal">15&nbsp;000&nbsp;₽</span>
+            <button type="button" data-target="check" data-dir="1" aria-label="Увеличить чек">+</button>
+          </div>
+        </div>
+        <div class="stepper-row">
+          <span class="lbl">Нужно заявок в месяц</span>
+          <div class="stepper">
+            <button type="button" data-target="leads" data-dir="-1" aria-label="Уменьшить число заявок">−</button>
+            <span class="val" id="leadsVal">30</span>
+            <button type="button" data-target="leads" data-dir="1" aria-label="Увеличить число заявок">+</button>
+          </div>
+        </div>
+        <p class="hint">Оценочный расчёт. Консервативно считаем, что в продажу закрывается 30% заявок.</p>
+      </div>
+      <div class="calc-out">
+        <div class="lbl">Окупаемость воронки</div>
+        <div class="big" id="payback">≈ 1,4 <small>мес</small></div>
+        <div class="lbl">Дополнительная выручка</div>
+        <div class="big" style="font-size:26px;" id="revenue">+ 135&nbsp;000&nbsp;₽ <small>/ мес</small></div>
+        <p class="note">Воронка под ключ — 90&nbsp;000&nbsp;₽. Точный расчёт под вашу нишу делаем на разборе.</p>
+        <a class="btn btn-primary" href="#pricing">Смотреть, что входит</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Этапы -->
+<section id="steps">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-label">Как работаем</p>
+      <h2>Три шага от знакомства до заявок</h2>
+      <p class="section-sub">Никаких «стратегических сессий» на месяц. Сначала проверяем экономику, потом включаем рекламу.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <span class="num">Шаг 1</span>
+        <h3>Разбор ниши и цифр</h3>
+        <p>Смотрим экономику: чек, маржу, конкурентов. Считаем, сколько может стоить заявка и окупится ли она. Если нет — говорим прямо.</p>
+      </div>
+      <div class="step">
+        <span class="num">Шаг 2</span>
+        <h3>Сборка воронки</h3>
+        <p>Лендинг или квиз, рекламный кабинет, бот или CRM. Всё соединяем так, чтобы заявка не терялась в мессенджерах.</p>
+      </div>
+      <div class="step">
+        <span class="num">Шаг 3</span>
+        <h3>Запуск и оптимизация</h3>
+        <p>Через две недели смотрим первые данные и отключаем то, что не работает. Отчёт — понятный, без «охватов».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Услуги -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-label">Что настраиваем</p>
+      <h2>Автоматизация под ключ, а не набор услуг</h2>
+    </div>
+    <div class="svc-list">
+      <div class="svc">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 L5 13 h5 l-2 9 L18 10 h-6 l3 -8 z"/></svg></span>
+        <div>
+          <h3>Воронки продаж</h3>
+          <p>Лендинги и квизы, которые не стыдно отправить клиенту. Тексты под вашу нишу, дизайн без «инфобизнесовской» вёрстки.</p>
+        </div>
+        <span class="tag">рост конверсии до 4,2×</span>
+      </div>
+      <div class="svc">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+        <div>
+          <h3>Реклама с прозрачной аналитикой</h3>
+          <p>Яндекс Директ и VK Реклама. Коллтрекинг и сквозная аналитика — вы видите стоимость реальной заявки, а не клика.</p>
+        </div>
+        <span class="tag">−38% к цене заявки</span>
+      </div>
+      <div class="svc">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg></span>
+        <div>
+          <h3>Боты в Telegram</h3>
+          <p>Квалификация заявок, напоминания, запись. Отвечает за секунды, пока конкурент ещё набирает текст.</p>
+        </div>
+        <span class="tag">ответ за 5 секунд</span>
+      </div>
+      <div class="svc">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+        <div>
+          <h3>CRM и порядок в заявках</h3>
+          <p>amoCRM или Битрикс24: заявка попадает в систему, менеджеру — задача, вам — понятный статус.</p>
+        </div>
+        <span class="tag">0 потерянных заявок</span>
+      </div>
+      <div class="svc">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span>
+        <div>
+          <h3>Ежемесячная оптимизация</h3>
+          <p>Каждый месяц отключаем нерабочее и масштабируем то, что приносит заявки. Платите не за «ведение», а за движение цифр.</p>
+        </div>
+        <span class="tag">отчёт каждую неделю</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Кейсы -->
+<section id="cases">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-label">Кейсы</p>
+      <h2>Цифры из реальных проектов</h2>
+    </div>
+    <div class="cases">
+      <div class="case">
+        <p class="who">Сервис по ремонту техники · Воронеж</p>
+        <div class="metric">−38%</div>
+        <p class="what">стоимость заявки после замены лендинга и перенастройки Директа</p>
+        <p class="term">Срок: 3 недели · Бюджет на рекламу: 90&nbsp;000&nbsp;₽/мес</p>
+      </div>
+      <div class="case">
+        <p class="who">Стоматологическая клиника · Санкт-Петербург</p>
+        <div class="metric">62 заявки</div>
+        <p class="what">в первый месяц после запуска квиза и бота записи</p>
+        <p class="term">Срок: 1 месяц · Стоимость заявки: 780&nbsp;₽</p>
+      </div>
+      <div class="case">
+        <p class="who">Онлайн-школа английского · удалённо</p>
+        <div class="metric">4,2×</div>
+        <p class="what">рост конверсии вебинарной воронки после редизайна и писем</p>
+        <p class="term">Срок: 6 недель · База: 18&nbsp;000 подписчиков</p>
+      </div>
+    </div>
+    <p class="cases-note">Цифры проверяемы: на встрече показываем рекламные кабинеты по этим проектам. Названия не публикуем по договору о конфиденциальности, контакты для рекомендаций даём лично.</p>
+  </div>
+</section>
+
+<!-- Автор -->
+<section class="author" id="author">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-label">Кто делает</p>
+      <h2>Работаю под своим именем и ИП</h2>
+    </div>
+    <div class="author-box">
+      <div class="author-photo" aria-hidden="true">ВФ</div>
+      <div>
+        <h3>Владимир Федотов</h3>
+        <p>7 лет в маркетинге: от первых кампаний до собственной студии. Сейчас работаю один с командой подрядчиков — вы платите за работу, а не за содержание офиса.</p>
+        <p>Сначала аналитика и цифры, потом красивые слова. Если воронка не окупится математически, продавать её не буду.</p>
+        <ul class="requisites">
+          <li><b>ИП Федотов Владимир Борисович</b> · официально, по договору</li>
+          <li><b>Оплата:</b> на расчётный счёт, чек от ИП</li>
+          <li><b>Гарантия:</b> если за 14 дней после запуска не будет ни одной целевой заявки при соблюдении бюджета — верну гонорар за настройку</li>
+          <li><b>Договор и реквизиты</b> — до старта работ, без «оплаты на карту»</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Цены -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-label">Цены</p>
+      <h2>Три формата, цены открыты</h2>
+      <p class="section-sub">Стоимость фиксируем до начала работ. Рассрочка для ИП — без банков и процентов, по договору.</p>
+    </div>
+    <div class="pricing">
+      <div class="price-card">
+        <h3>Разбор</h3>
+        <p class="for">Для тех, кто сомневается, стоит ли запускать</p>
+        <div class="price">15&nbsp;000&nbsp;₽ <small>/ разово</small></div>
+        <ul>
+          <li>Аудит текущей рекламы и страницы</li>
+          <li>Расчёт экономики: цена заявки и окупаемость</li>
+          <li>План действий — можно реализовать и без нас</li>
+        </ul>
+        <a class="btn btn-primary" href="#contacts">Заказать разбор</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Запуск под ключ</h3>
+        <p class="for">Воронка, реклама, бот и аналитика с нуля</p>
+        <div class="price">90&nbsp;000&nbsp;₽ <small>/ проект</small></div>
+        <ul>
+          <li>Лендинг или квиз с текстами и дизайном</li>
+          <li>Настройка рекламных кабинетов</li>
+          <li>Бот или CRM — заявки не теряются</li>
+          <li>Коллтрекинг и сквозная аналитика</li>
+          <li>Оптимизация первых 2 недель — в подарок</li>
+        </ul>
+        <a class="btn btn-primary" href="#contacts">Обсудить проект</a>
+      </div>
+      <div class="price-card">
+        <h3>Сопровождение</h3>
+        <p class="for">Когда система работает и её нужно разгонять</p>
+        <div class="price">40&nbsp;000&nbsp;₽ <small>/ месяц</small></div>
+        <ul>
+          <li>Ведение рекламы и еженедельная оптимизация</li>
+          <li>Отчёт без воды: заявки, стоимость, продажи</li>
+          <li>Доработка страниц и тесты гипотез</li>
+          <li>Отменить можно в любой момент, за 2 недели</li>
+        </ul>
+        <a class="btn btn-primary" href="#contacts">Обсудить формат</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="services" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-label">Вопросы</p>
+      <h2>Что спрашивают перед стартом</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Через сколько будут заявки?</summary>
+        <p>Первые заявки обычно приходят в первую неделю после запуска рекламы. Честная оптимизация занимает 2–4 недели: сначала собираем данные, потом отключаем лишнее. Обещать «поток клиентов за три дня» — значит врать.</p>
+      </details>
+      <details>
+        <summary>Какой рекламный бюджет нужен?</summary>
+        <p>Минимум для теста ниши — 40&nbsp;000–60&nbsp;000&nbsp;₽ в месяц. Если маржинальный чек меньше 3&nbsp;000&nbsp;₽, посчитаем вместе, сойдётся ли экономика, до подписания договора.</p>
+      </details>
+      <details>
+        <summary>А если не сработает?</summary>
+        <p>Гарантия прописана в договоре: при соблюдении согласованного бюджета и сроков, если за 14 дней не будет ни одной целевой заявки — возвращаем гонорар за настройку. За 7 лет таких случаев было четыре, из них три мы предсказали ещё на разборе.</p>
+      </details>
+      <details>
+        <summary>Вы работаете с нашей нишей?</summary>
+        <p>С бизнесом, где средний чек от 5&nbsp;000&nbsp;₽ или есть повторные продажи. Не берём: ставки, крипту, «серые» схемы и всё, за что было бы стыдно.</p>
+      </details>
+      <details>
+        <summary>Почему нет отзывов с фамилиями и фото?</summary>
+        <p>Клиенты подписали договоры о конфиденциальности — публикуем цифры и ниши. Контакты для рекомендаций передаём лично на встрече: это честнее, чем стоковые фото «довольных клиентов».</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Финальный CTA -->
+<section class="final" id="contacts">
+  <div class="container">
+    <h2>Расскажите о задаче — за 20 минут скажем, окупится ли</h2>
+    <p>Напишите в Telegram. Если проект не окупится или нам не под силу — скажем прямо, без «менеджер перезвонит».</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="https://t.me/klienty_na_avtomate" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="btn btn-ghost-dark" href="#pricing">Ещё раз посмотреть цены</a>
+    </div>
+    <p class="fine">Отвечаем лично в течение рабочего дня. Никаких рассылок без вашего согласия.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <p style="color:#fff; font-weight:500; margin-bottom:8px;">Клиенты на автомате</p>
+      <p>ИП Федотов Владимир Борисович</p>
+      <p>Россия · Telegram: @klienty_na_avtomate</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#steps">Как работаем</a></li>
+      <li><a href="#cases">Кейсы</a></li>
+      <li><a href="#pricing">Цены</a></li>
+      <li><a href="#">Договор-оферта</a></li>
+      <li><a href="#">Политика конфиденциальности</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Шапка при скролле
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Мобильное меню
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') mobileMenu.classList.remove('open');
+  });
+
+  // Калькулятор окупаемости
+  const state = { check: 15000, leads: 30 };
+  const SETUP_COST = 90000;
+  const fmt = (n) => n.toLocaleString('ru-RU') + ' ₽';
+
+  function render() {
+    document.getElementById('checkVal').innerHTML = fmt(state.check).replace(' ', '&nbsp;');
+    document.getElementById('leadsVal').textContent = state.leads;
+    const extra = Math.round(state.check * state.leads * 0.3);
+    const months = extra > 0 ? SETUP_COST / extra : 0;
+    document.getElementById('revenue').innerHTML =
+      '+ ' + fmt(extra).replace(' ', '&nbsp;') + ' <small>/ мес</small>';
+    document.getElementById('payback').innerHTML =
+      (months < 1 ? '≈ ' + Math.max(1, Math.round(months * 30)) + ' <small>дн</small>'
+                  : '≈ ' + months.toLocaleString('ru-RU', { maximumFractionDigits: 1 }) + ' <small>мес</small>');
+  }
+
+  document.querySelectorAll('.stepper button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dir = Number(btn.dataset.dir);
+      if (btn.dataset.target === 'check') {
+        state.check = Math.min(100000, Math.max(3000, state.check + dir * 5000));
+      } else {
+        state.leads = Math.min(200, Math.max(5, state.leads + dir * 5));
+      }
+      render();
+    });
+  });
+  render();
+</script>
+</body>
+</html>
